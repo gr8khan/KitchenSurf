@@ -37,7 +37,7 @@ _________________________________________________________ -->
                    <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}">
                     <a href="/settings"><i class="fa fa-user">&nbsp;</i>Change Password</a>
                   </li>
-                  <li ng-show="isSysAdmin()" ng-class="{active: isActive('/customer')}">
+                  <li ng-show="isAdmin()" ng-class="{active: isActive('/customer')}">
                     <a href="/customer"><i class="fa fa-user">&nbsp;</i>Customers</a>
                   </li>
                   <li ng-show="isSysAdmin()" ng-class="{active: isActive('/paymentMethod')}">

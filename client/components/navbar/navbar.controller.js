@@ -18,6 +18,7 @@ angular.module('shopnxApp')
     $scope.isCollapsed1 = true;
     $rootScope.isLoggedIn = Auth.isLoggedIn;
     $rootScope.isAdmin = Auth.isAdmin;
+    $rootScope.isSysAdmin = Auth.isSysAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
 
     $rootScope.checkCart = function(id){
