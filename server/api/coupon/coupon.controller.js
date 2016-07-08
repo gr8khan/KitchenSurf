@@ -33,7 +33,11 @@ exports.show = function(req, res) {
 
 // Creates a new coupon in the DB.
 exports.create = function(req, res) {
-  Coupon.create(req.body, function(err, coupon) {
+
+  var coupon = new Coupon(req.body);
+  coupon.user = req.user;
+
+  Coupon.create(coupon, function(err, coupon) {
     if(err) { return handleError(res, err); }
     return res.status(201).json(coupon);
   });

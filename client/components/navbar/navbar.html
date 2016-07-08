@@ -37,13 +37,13 @@ _________________________________________________________ -->
                    <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}">
                     <a href="/settings"><i class="fa fa-user">&nbsp;</i>Change Password</a>
                   </li>
-                  <li ng-show="isAdmin()" ng-class="{active: isActive('/customer')}">
+                  <li ng-show="isSysAdmin()" ng-class="{active: isActive('/customer')}">
                     <a href="/customer"><i class="fa fa-user">&nbsp;</i>Customers</a>
                   </li>
-                  <li ng-show="isAdmin()" ng-class="{active: isActive('/paymentMethod')}">
+                  <li ng-show="isSysAdmin()" ng-class="{active: isActive('/paymentMethod')}">
                     <a href="/paymentMethod"><i class="fa fa-wrench">&nbsp;</i>Payment Method</a>
                   </li>
-                  <li ng-show="isAdmin()" ng-class="{active: isActive('/shipping')}">
+                  <li ng-show="isSysAdmin()" ng-class="{active: isActive('/shipping')}">
                     <a href="/shipping"><i class="fa fa-wrench">&nbsp;</i>Shipping Settings</a>
                   </li>
                   <!-- <li ng-show="isAdmin()" ng-class="{active: isActive('/country')}">

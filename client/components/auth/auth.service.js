@@ -144,6 +144,15 @@ angular.module('shopnxApp')
        * @return {Boolean}
        */
       isAdmin: function() {
+        return (currentUser.role === 'cook' || currentUser.role === 'admin') ;
+      },
+
+      /**
+       * Check if a user is an cook
+       *
+       * @return {Boolean}
+       */
+      isSysAdmin: function() {
         return currentUser.role === 'admin';
       },
 

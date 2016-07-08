@@ -9,7 +9,11 @@ var CouponSchema = new Schema({
   type: { type: String, default: 'Discount' },
   active: { type: Boolean, default: true },
   info: String,
-  minimumCartValue: Number
+  minimumCartValue: Number,
+  user: {
+    type: Schema.ObjectId,
+    ref: 'User'
+  }
 });
 
 module.exports = mongoose.model('Coupon', CouponSchema);

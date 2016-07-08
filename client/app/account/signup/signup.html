@@ -41,6 +41,15 @@
                 </p>
               </div>
 
+              <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
+                                                  'has-error': form.name.$invalid && submitted }">
+                <label>What kind of user are you?</label> <br>
+
+                <p class="help-block" ng-show="form.name.$error.required && submitted">
+                  A name is required
+                </p>
+              </div>
+
               <div class="form-group" ng-class="{ 'has-success': form.password.$valid && submitted,
                                                   'has-error': form.password.$invalid && submitted }">
                 <label>Password</label>
@@ -57,6 +66,17 @@
                   {{ errors.password }}
                 </p>
               </div>
+
+          <div>
+              <label>Are you a cook or just hungry?</label>
+                <input type="radio" name="role" class="form-control" ng-model="user.role" value="cook" checked> Cooking is my passion
+
+              <br>
+                <input type="radio" name="role" class="form-control" ng-model="user.role" value="user"> I'm Hungry!
+            <br>
+          </div>
+
+
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> Sign up</button>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="" href="/login">Login</a>
