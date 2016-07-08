@@ -13,6 +13,7 @@ function isJson(str) {
 }
 
 // Get list of coupons
+// TODO: Will check to see if user is admin or cook if admin then get all if cook then query by userid & admin userid
 exports.index = function(req, res) {
   var q = isJson(req.query.where);
   // console.log(q);
@@ -32,6 +33,7 @@ exports.show = function(req, res) {
 };
 
 // Creates a new coupon in the DB.
+//TODO: need to create
 exports.create = function(req, res) {
 
   var coupon = new Coupon(req.body);
