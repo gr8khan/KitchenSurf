@@ -41,29 +41,29 @@
       <div class="panel panel-default sidebar-menu">
 
           <div class="panel-heading">
-              <h3 class="panel-title">Brands
+              <h3 class="panel-title">FoodTypes
                 <div class="nav-search" id="nav-search">
                         <span class="input-icon">
-                            <input placeholder="Filter Brands ..." class="nav-search-input" ng-model="filterBrand" autocomplete="off" type="text" autofocus style="width:100%">
+                            <input placeholder="Filter FoodTypes ..." class="nav-search-input" ng-model="filterFoodType" autocomplete="off" type="text" autofocus style="width:100%">
                             <i class="search-icon fa fa-search nav-search-icon"></i>
                         </span>
                 </div>
               </h3>
           </div>
 
-          <div class="panel-body brand-filter-panel">
+          <div class="panel-body foodType-filter-panel">
 
               <form>
                   <div class="form-group">
-                      <div class="checkbox" ng-repeat="b in brands | filter:filterBrand">
+                      <div class="checkbox" ng-repeat="b in foodTypes | filter:filterFoodType">
                           <label>
-                            <input type="checkbox" value="{{b.name}}" checklist-model="fl.brands" checklist-value="b" ng-click="filter();" />
+                            <input type="checkbox" value="{{b.name}}" checklist-model="fl.foodTypes" checklist-value="b" ng-click="filter();" />
                             {{b.name}}<span>&nbsp;</span>
                           </label>
                       </div>
                   </div>
 
-<a class="btn btn-xs btn-warning pull-right" href="" ng-repeat="b in fl.brands" ng-click="removeBrand(b);" style="margin:0 0 5px 5px;"><i class="fa fa-times-circle"></i> {{b.name}}</a>
+<a class="btn btn-xs btn-warning pull-right" href="" ng-repeat="b in fl.foodTypes" ng-click="removeFoodType(b);" style="margin:0 0 5px 5px;"><i class="fa fa-times-circle"></i> {{b.name}}</a>
               </form>
 
           </div>
@@ -106,19 +106,19 @@
 
                     <div class="box info-bar">
                         <div class="row">
-                            <div class="col-sm-12 col-md-5 products-showing">
-                                Showing {{products.items.length}} products of {{products.count}} in: $<strong>{{priceSlider.min}}</strong> &nbsp;-&nbsp; $<strong>{{priceSlider.max}}</strong>
+                            <div class="col-sm-12 col-md-5 foods-showing">
+                                Showing {{foods.items.length}} foods of {{foods.count}} in: $<strong>{{priceSlider.min}}</strong> &nbsp;-&nbsp; $<strong>{{priceSlider.max}}</strong>
                             </div>
 
-                            <div class="col-sm-12 col-md-7 text-right products-number-sort">
+                            <div class="col-sm-12 col-md-7 text-right foods-number-sort">
                                 <div class="row">
                                     <form class="form-inline">
 
                                         <div class="col-md-12 col-sm-12">
-                                            <div class="products-number">
+                                            <div class="foods-number">
                                                 <strong>Sort</strong>
                                                 <div class="btn-group">
-                                                  <a href="" ng-repeat="o in sortOptions" ng-class="{active : o.val==products.sort}" class="btn btn-default btn-sm btn-primary"  ng-click="sortNow(o.val);">{{o.name}}</a>
+                                                  <a href="" ng-repeat="o in sortOptions" ng-class="{active : o.val==foods.sort}" class="btn btn-default btn-sm btn-primary"  ng-click="sortNow(o.val);">{{o.name}}</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -126,10 +126,10 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-12 col-md-8  products-number-sort">
-                                <div class="products-sort-by">
-                                  <span ng-if="fl.brands.length>0">Brands:</span>
-                                  <a class="btn btn-xs btn-warning" href="" ng-click="removeBrand(b);" ng-repeat="b in fl.brands" style="margin-left:5px;"><i class="fa fa-times-circle"></i> {{b.name}}</a>
+                            <div class="col-sm-12 col-md-8  foods-number-sort">
+                                <div class="foods-sort-by">
+                                  <span ng-if="fl.foodTypes.length>0">FoodTypes:</span>
+                                  <a class="btn btn-xs btn-warning" href="" ng-click="removeFoodType(b);" ng-repeat="b in fl.foodTypes" style="margin-left:5px;"><i class="fa fa-times-circle"></i> {{b.name}}</a>
 
                                   <a ng-if="fl.categories.length>0" class="btn btn-xs btn-warning" href="" ng-click="removeCategory();" style="margin-left:5px;"><i class="fa fa-times-circle"></i>{{fl.categories[0].name}}</a>
 
@@ -137,68 +137,68 @@
     <a ng-if="features" ng-click="removeFeatures(features);" ng-repeat="f in features" class="btn btn-xs btn-warning" href="" style="margin-left:5px;">{{f}}</a>
 </span>
 
-                                  <!-- <select ng-model="products.brand"  ng-change="navigate('Brand',products.brand);" ng-options="b.name for b in brands track by b._id" class="pull-right">
-                                      <option value="">All Brands</option>
+                                  <!-- <select ng-model="foods.foodType"  ng-change="navigate('FoodType',foods.foodType);" ng-options="b.name for b in foodTypes track by b._id" class="pull-right">
+                                      <option value="">All FoodTypes</option>
                                   </select> -->
                                 </div>
                             </div>
                         </div>
                     </div>
-<div infinite-scroll='scroll()' infinite-scroll-disabled='products.busy' infinite-scroll-distance='1'>
-                    <div class="row products" dw-loading="products" dw-loading-options="{text: ''}">
-                      <div class="box" ng-if="products.items.length==0 && !products.busy">
+<div infinite-scroll='scroll()' infinite-scroll-disabled='foods.busy' infinite-scroll-distance='1'>
+                    <div class="row foods" dw-loading="foods" dw-loading-options="{text: ''}">
+                      <div class="box" ng-if="foods.items.length==0 && !foods.busy">
                           <div class="row">
                               <div class="col-sm-12">
-                                <h3>No product found. Try removing some filters.</h3>
+                                <h3>No food found. Try removing some filters.</h3>
                               </div>
                           </div>
                       </div>
-                      <div class="col-md-4 col-sm-6" ng-repeat="product in products.items">
-                            <div class="product">
+                      <div class="col-md-4 col-sm-6" ng-repeat="food in foods.items">
+                            <div class="food">
                                 <div class="flip-container">
                                     <div class="flipper">
                                         <div class="front">
-                                            <a ui-sref="productDetail({id:product._id, slug:product.slug})">
-                                                <img ng-src="/assets/clothing/{{product.variants[0].image}}"
+                                            <a ui-sref="foodDetail({id:food._id, slug:food.slug})">
+                                                <img ng-src="/assets/clothing/{{food.variants[0].image}}"
                                                     err-src="/assets/images/photo.png"
-                                                    alt="{{product.name}}" class="img-responsive">
+                                                    alt="{{food.name}}" class="img-responsive">
                                             </a>
                                         </div>
                                         <div class="back">
-                                            <a ui-sref="productDetail({id:product._id, slug:product.slug})">
-                                                <img ng-src="/assets/clothing/{{product.variants[0].image}}"
+                                            <a ui-sref="foodDetail({id:food._id, slug:food.slug})">
+                                                <img ng-src="/assets/clothing/{{food.variants[0].image}}"
                                                     err-src="/assets/images/photo.png"
-                                                    alt="{{product.name}}" class="img-responsive">
+                                                    alt="{{food.name}}" class="img-responsive">
                                             </a>
                                         </div>
                                     </div>
                                 </div>
-                                <a ui-sref="productDetail({id:product._id, slug:product.slug})" class="invisible">
-                                    <img src="/assets/clothing/{{product.variants[0].image}}" alt="" class="img-responsive">
+                                <a ui-sref="foodDetail({id:food._id, slug:food.slug})" class="invisible">
+                                    <img src="/assets/clothing/{{food.variants[0].image}}" alt="" class="img-responsive">
                                 </a>
                                 <div class="text text-center">
-                                    <h3><a ui-sref="productDetail({id:product._id, slug:product.slug})">{{product.name}}{{product.variants[0].size}}</a></h3>
-                                    <p class="price"><del ng-if="product.variants[0].price!=product.variants[0].mrp">{{product.variants[0].mrp | currency : '$'}}</del> {{product.variants[0].price | currency : '$'}}</p>
+                                    <h3><a ui-sref="foodDetail({id:food._id, slug:food.slug})">{{food.name}}{{food.variants[0].size}}</a></h3>
+                                    <p class="price"><del ng-if="food.variants[0].price!=food.variants[0].mrp">{{food.variants[0].mrp | currency : '$'}}</del> {{food.variants[0].price | currency : '$'}}</p>
                                     <p class="buttons">
                                       <div class="btn-group">
-                                      <a ui-sref="productDetail({id:product._id, slug:product.slug})" class="btn btn-default">View detail</a>
-                                      <a ng-click="cart.addItem({sku:product._id, name:product.name, slug:product.slug, mrp:product.variants[0].mrp, price:product.variants[0].price, weight:product.variants[0].weight}, -1)" ng-hide="checkCart(product._id)" class="btn btn-info">-</a>
+                                      <a ui-sref="foodDetail({id:food._id, slug:food.slug})" class="btn btn-default">View detail</a>
+                                      <a ng-click="cart.addItem({sku:food._id, name:food.name, slug:food.slug, mrp:food.variants[0].mrp, price:food.variants[0].price, weight:food.variants[0].weight}, -1)" ng-hide="checkCart(food._id)" class="btn btn-info">-</a>
 
-                                      <a ng-hide="checkCart(product._id)" class="btn btn-info">{{getQuantity(product._id);}}</a>
+                                      <a ng-hide="checkCart(food._id)" class="btn btn-info">{{getQuantity(food._id);}}</a>
 
-                                      <a ng-click="cart.addItem({sku:product._id, name:product.name, slug:product.slug, mrp:product.variants[0].mrp, price:product.variants[0].price, weight:product.variants[0].weight}, +1)" ng-hide="checkCart(product._id)" class="btn btn-info">+</a>
+                                      <a ng-click="cart.addItem({sku:food._id, name:food.name, slug:food.slug, mrp:food.variants[0].mrp, price:food.variants[0].price, weight:food.variants[0].weight}, +1)" ng-hide="checkCart(food._id)" class="btn btn-info">+</a>
                                       </div>
-                                      <a ng-click="cart.addItem({sku:product._id, name:product.name, slug:product.slug, mrp:product.variants[0].mrp, price:product.variants[0].price, quantity:1, image:product.variants[0].image,category:product.category, size:product.variants[0].size, weight:product.variants[0].weight} ,true);" ng-show="checkCart(product._id)" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                      <a ng-click="cart.addItem({sku:food._id, name:food.name, slug:food.slug, mrp:food.variants[0].mrp, price:food.variants[0].price, quantity:1, image:food.variants[0].image,category:food.category, size:food.variants[0].size, weight:food.variants[0].weight} ,true);" ng-show="checkCart(food._id)" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </p>
                                 </div>
                                 <!-- /.text -->
                             </div>
-                            <!-- /.product -->
+                            <!-- /.food -->
                         </div>
 
                         <!-- /.col-md-4 -->
                     </div>
-                    <!-- /.products -->
+                    <!-- /.foods -->
 
                 </div>
                 <!-- /.col-md-9 -->

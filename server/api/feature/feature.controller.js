@@ -2,7 +2,7 @@
 
 var _ = require('lodash');
 var Feature = require('./feature.model');
-var Product = require('../product/product.model');
+var Food = require('../food/food.model');
 
 // Get all features group
 exports.group = function(req, res) {
@@ -30,8 +30,8 @@ exports.group = function(req, res) {
 });
 };
 
-// // Get all features product details
-// exports.products = function(req, res) {
+// // Get all features food details
+// exports.foods = function(req, res) {
 //   var async = require("async");
 //   var p = [];
 //   // return res.status(200).json(p);
@@ -40,7 +40,7 @@ exports.group = function(req, res) {
 //     // Using async library which will enable us to wait until data received from database
 //     async.each(feature, function(a, callback){
 //         a = a.toObject();
-//         Product.find({'features.key':a.name}).select({name:1,_id:1,slug:1}).exec(function(err,c){
+//         Food.find({'features.key':a.name}).select({name:1,_id:1,slug:1}).exec(function(err,c){
 //           a.sub_features = c;
 //           p.push(a);
 //           callback();

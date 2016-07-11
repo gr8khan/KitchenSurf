@@ -4,21 +4,21 @@
 
 'use strict';
 
-var Brand = require('./brand.model');
+var FoodType = require('./foodType.model.js');
 
 exports.register = function(socket) {
-  Brand.schema.post('save', function (doc) {
+  FoodType.schema.post('save', function (doc) {
     onSave(socket, doc);
   });
-  Brand.schema.post('remove', function (doc) {
+  FoodType.schema.post('remove', function (doc) {
     onRemove(socket, doc);
   });
 }
 
 function onSave(socket, doc, cb) {
-  socket.emit('brand:save', doc);
+  socket.emit('foodType:save', doc);
 }
 
 function onRemove(socket, doc, cb) {
-  socket.emit('brand:remove', doc);
+  socket.emit('foodType:remove', doc);
 }

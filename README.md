@@ -45,7 +45,7 @@ The following are basic commands which will generate the required code for your 
 *  Single page web app (SPA) created using AngularJS, NodeJS, Express, MongoDB (MEAN)
 *  Fastest shop experience
 *  Fast Product Search, Filter with AJAX
-*  Price slider and multiple brand selector
+*  Price slider and multiple foodType selector
 *  Faster Add to Cart and Product Details
 *  Checkout with Paypal Integration
 *  Minimal User Registration process
@@ -56,7 +56,7 @@ The following are basic commands which will generate the required code for your 
 *  Loads more products on scroll (No paging required)
 *  Clean and responsive user interface
 ### Store Back Office
-*  Products, Categories, Brand, Order Management from admin panel with easy directives
+*  Products, Categories, FoodType, Order Management from admin panel with easy directives
 *  Manage Order and Change Status from admin panel
 *  Facility for Multiple product variants (size, color, price, image)
 *  User roles - Administrator, User, Guest

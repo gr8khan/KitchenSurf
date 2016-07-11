@@ -12,25 +12,25 @@ angular.module('shopnxApp')
           sort: null
         }
       })
-      .state('productDetail', {
-        title: 'Details of selected product',
+      .state('foodDetail', {
+        title: 'Details of selected food',
         params: {
           id: null,
           slug: null
         },
         url: '/p/:slug',
-        templateUrl: 'app/main/product-details.html',
-        controller: 'ProductDetailsCtrl'
+        templateUrl: 'app/main/food-details.html',
+        controller: 'FoodDetailsCtrl'
       })
-      .state('SubProduct', {
-        title: 'All products under current category or brand',
+      .state('SubFood', {
+        title: 'All foods under current category or foodType',
         url: '/:page/:slug/:_id',
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl',
         params: {
           id: null,
           sort: null,
-          brand: null,
+          foodType: null,
           category: null,
           price1: 0,
           price2: 100000

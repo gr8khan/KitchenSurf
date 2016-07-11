@@ -1,21 +1,18 @@
 'use strict';
 
-describe('Controller: BrandCtrl', function () {
+describe('Controller: FoodCtrl', function () {
 
   // load the controller's module
   beforeEach(module('shopnxApp'));
 
-  var BrandCtrl, scope;
+  var FoodCtrl, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    BrandCtrl = $controller('BrandCtrl', {
+    FoodCtrl = $controller('FoodCtrl', {
       $scope: scope
     });
   }));
-  // 
-  // it('should ...', function () {
-  //   expect(true).toBe(true);
-  // });
+
 });

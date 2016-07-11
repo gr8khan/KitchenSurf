@@ -15,14 +15,14 @@ _________________________________________________________ -->
                 <a href="#" dropdown-toggle="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-dashboard">&nbsp;</i>Dashboard<b class="caret"></b>
                   </a>
                 <ul class="dropdown-menu" role="menu">
-                  <li ng-show="isAdmin()" ng-class="{active: isActive('/product')}">
-                    <a href="/product"><i class="fa fa-truck">&nbsp;</i>Products</a>
+                  <li ng-show="isAdmin()" ng-class="{active: isActive('/food')}">
+                    <a href="/food"><i class="fa fa-truck">&nbsp;</i>Foods</a>
                   </li>
                   <li ng-show="isAdmin()" ng-class="{active: isActive('/category')}">
                     <a href="/category"><i class="fa fa-ticket">&nbsp;</i>Categories</a>
                   </li>
-                  <li ng-show="isAdmin()" ng-class="{active: isActive('/brand')}">
-                    <a href="/brand"><i class="fa fa-tag">&nbsp;</i>Brands</a>
+                  <li ng-show="isAdmin()" ng-class="{active: isActive('/foodType')}">
+                    <a href="/foodType"><i class="fa fa-tag">&nbsp;</i>FoodTypes</a>
                   </li>
                   <li ng-show="isAdmin()" ng-class="{active: isActive('/feature')}">
                     <a href="/feature"><i class="fa fa-tag">&nbsp;</i>Features</a>
@@ -37,7 +37,7 @@ _________________________________________________________ -->
                    <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}">
                     <a href="/settings"><i class="fa fa-user">&nbsp;</i>Change Password</a>
                   </li>
-                  <li ng-show="isAdmin()" ng-class="{active: isActive('/customer')}">
+                  <li ng-show="isSysAdmin()" ng-class="{active: isActive('/customer')}">
                     <a href="/customer"><i class="fa fa-user">&nbsp;</i>Customers</a>
                   </li>
                   <li ng-show="isSysAdmin()" ng-class="{active: isActive('/paymentMethod')}">
@@ -103,11 +103,13 @@ _________________________________________________________ -->
 <div class="navbar navbar-default yamm" role="navigation" id="navbar">
     <div class="container">
   <div class="col-md-12">
+    <div>
+      <img src="/assets/img/logo.gif" alt="TasteBudz logo" class="hidden-xs">
+    </div>
         <div class="navbar-header">
 
-            <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
-                <img src="/assets/img/logo.gif" alt="CodeNx logo" class="hidden-xs">
-                <img src="/assets/img/logo.gif" alt="CodeNx logo" class="visible-xs"><span class="sr-only">ShopNx - go to homepage</span>
+            <a class="navbar-foodType home" href="index.html" data-animate-hover="bounce">
+                <span class="sr-only">ShopNx - go to homepage</span>
             </a>
             <div class="navbar-buttons">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation" ng-click="isCollapsed1 = !isCollapsed1">
@@ -176,13 +178,13 @@ _________________________________________________________ -->
                 </script>
                 <div class="input-group">
                 <input class="form-control text-left" type="text" name="q" id="q" autocomplete="off"
-                placeholder="Search for a product, category or brand..."
+                placeholder="Search for a food, category or foodType..."
                 ng-model="search"
                 typeahead="p as p.name for p in globalSearch($viewValue)"
                 typeahead-loading="loadingLocations"
                 typeahead-no-results="noResults"
                 typeahead-template-url="searchTemplate.html"
-                typeahead-on-select="onSelectProduct($item, $model, $label)"
+                typeahead-on-select="onSelectFood($item, $model, $label)"
                 autofocus=""
                 >
                 <span class="input-group-btn">

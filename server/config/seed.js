@@ -8,9 +8,9 @@
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
 var Setting = require('../api/setting/setting.model');
-var Product = require('../api/product/product.model');
+var Food = require('../api/food/food.model');
 var Category = require('../api/category/category.model');
-var Brand = require('../api/brand/brand.model');
+var FoodType = require('../api/foodType/foodType.model.js');
 var PaymentMethod = require('../api/PaymentMethod/PaymentMethod.model');
 var Setting = require('../api/setting/setting.model');
 var Feature = require('../api/feature/feature.model');
@@ -77,7 +77,7 @@ Coupon.find(function (err, data) {
         "_id" : "561cbd6fc3c4fab4009caa0e",
         "code" : "A100",
         "amount" : 100,
-        "info" : "$100 discount on all products above $100",
+        "info" : "$100 discount on all foods above $100",
         "active" : true,
         "type" : "Discount",
         "minimumCartValue" : 500,
@@ -203,13 +203,13 @@ User.find(function (err, data) {
   }
 });
 
-Product.find(function (err, data) {
+Food.find(function (err, data) {
   if(data.length < 1){
-    Product.create({
+    Food.create({
     "_id" : "5607a6af0dc20f1b0366522a",
     "name" : "ArrowGrey Slim Fit Formal Trouser",
     "info" : "Complete your formal attire by wearing these grey coloured formal trousers from Arrow. Made from poly viscose, these trousers can be worn with complete ease and comfort. Featuring a smooth finish and flat front, these trousers with cross pockets at the sides can be clubbed with a modish formal shirt for a perfect look. ",
-    "brand" : {
+    "foodType" : {
         "active" : true,
         "__v" : 0,
         "slug" : "alleviater",
@@ -293,7 +293,7 @@ Product.find(function (err, data) {
     },
     "__v" : 0
 }, function() {
-        console.log('finished populating products');
+        console.log('finished populating foods');
     });
   }
 });
@@ -338,9 +338,9 @@ Category.find(function (err, data) {
   }
 });
 
-Brand.find(function (err, data) {
+FoodType.find(function (err, data) {
   if(data.length < 1){
-    Brand.create({
+    FoodType.create({
     "_id" : "5607c58bdddfb6780c5bddf3",
     "name" : "Estelle",
     "info" : "Estelle",
@@ -362,7 +362,7 @@ Brand.find(function (err, data) {
     "name" : "Alleviater",
     "_id" : "5607c5c1dddfb6780c5bddf8"
 }, function() {
-        console.log('finished populating brands');
+        console.log('finished populating foodTypes');
     });
   }
 });

@@ -13,7 +13,6 @@ function isJson(str) {
 }
 
 // Get list of coupons
-// TODO: Will check to see if user is admin or cook if admin then get all if cook then query by userid & admin userid
 exports.index = function(req, res) {
   //var q = isJson(req.query.where);
   var q = {};

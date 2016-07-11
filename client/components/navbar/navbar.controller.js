@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('shopnxApp')
-  .controller('NavbarCtrl', ['$scope', '$rootScope', '$location', 'Auth', '$modal', 'Cart', 'Category', 'Brand', 'SortOptions', '$q', 'Product', '$state', function ($scope, $rootScope, $location, Auth, $modal, Cart, Category, Brand,SortOptions,$q, Product, $state) {
+  .controller('NavbarCtrl', ['$scope', '$rootScope', '$location', 'Auth', '$modal', 'Cart', 'Category', 'FoodType', 'SortOptions', '$q', 'Food', '$state', function ($scope, $rootScope, $location, Auth, $modal, Cart, Category, FoodType,SortOptions,$q, Food, $state) {
     $scope.hideSubMenu = function(){
       // $('.megamenu .dropdown:hover .dropdown-menu').hide(); // Hide the navbar submenu once a category is selected
     }
@@ -11,7 +11,7 @@ angular.module('shopnxApp')
       'link': '/'
     }];
 
-    $rootScope.brands = Brand.query({active:true});
+    $rootScope.foodTypes = FoodType.query({active:true});
     $rootScope.sortOptions = SortOptions.server;
 
     $scope.isCollapsed = true;
@@ -46,8 +46,8 @@ angular.module('shopnxApp')
       return route === $location.path();
     };
 
-    $scope.onSelectProduct = function($item){
-        $state.go('productDetail', {id:$item._id, slug:$item.slug}, {reload: false});
+    $scope.onSelectFood = function($item){
+        $state.go('foodDetail', {id:$item._id, slug:$item.slug}, {reload: false});
         $scope.search = '';
     };
 
@@ -72,7 +72,7 @@ angular.module('shopnxApp')
           input = input.toLowerCase();
             var defer = $q.defer();
             if (input){
-                Product.query({where:{nameLower: {'$regex': input}, active:true}, limit:10, select: {id: 1, name:1, slug: 1}},
+                Food.query({where:{nameLower: {'$regex': input}, active:true}, limit:10, select: {id: 1, name:1, slug: 1}},
                     function(data){
                           console.log(data);
                         if (!$scope.$$phase){ //check if digest is not in progress

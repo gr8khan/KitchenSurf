@@ -28,10 +28,10 @@ function onConnect(socket) {
   require('../api/cart/cart.socket').register(socket);
   require('../api/invoice/invoice.socket').register(socket);
   require('../api/shop/shop.socket').register(socket);
-  require('../api/brand/brand.socket').register(socket);
+  require('../api/foodType/foodType.socket.js').register(socket);
   require('../api/order/order.socket').register(socket);
   require('../api/category/category.socket').register(socket);
-  require('../api/product/product.socket').register(socket);
+  require('../api/food/food.socket').register(socket);
   require('../api/thing/thing.socket').register(socket);
 }
 

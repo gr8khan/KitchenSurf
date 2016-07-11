@@ -1,21 +1,21 @@
 'use strict';
 
 angular.module('shopnxApp')
-  .controller('ProductDetailsCtrl', function ($scope, $rootScope, Product, Category, socket, $stateParams, $location, $state, $injector) {
+  .controller('FoodDetailsCtrl', function ($scope, $rootScope, Food, Category, socket, $stateParams, $location, $state, $injector) {
     var id = $stateParams.id;
     // var slug = $stateParams.slug;
-    // Storing the product id into localStorage because the _id of the selected product which was passed as a hidden parameter from products won't available on page refresh
+    // Storing the food id into localStorage because the _id of the selected food which was passed as a hidden parameter from foods won't available on page refresh
     if (localStorage !== null && JSON !== null && id !== null) {
-        localStorage.productId = id;
+        localStorage.foodId = id;
     }
-    var productId = localStorage !== null ? localStorage.productId : null;
+    var foodId = localStorage !== null ? localStorage.foodId : null;
 
-    $scope.product = Product.get({id:productId},function(data) {
-      socket.syncUpdates('product', $scope.data);
+    $scope.food = Food.get({id:foodId},function(data) {
+      socket.syncUpdates('food', $scope.data);
       generateBreadCrumb('Category',data.category._id);
     });
     $scope.categories = Category.all.query();
-    // To shuffle throught different product variants
+    // To shuffle throught different food variants
     $scope.i=0;
     $scope.changeIndex =function(i){
         $scope.i=i;
@@ -30,7 +30,7 @@ angular.module('shopnxApp')
       }
     };
 
-    // Function to generate breadcrumb for category and brand
+    // Function to generate breadcrumb for category and foodType
     // Future: Put it inside a directive
     var generateBreadCrumb = function(page, id){
       $scope.breadcrumb = {};
@@ -39,22 +39,22 @@ angular.module('shopnxApp')
       api.get({id:id}).$promise.then(function(child){
         $scope.breadcrumb.items.push(child);
         // var p = child.parent;
-        // if(p != null){findBrandPath(1);}
+        // if(p != null){findFoodTypePath(1);}
         if(page==='Category'){
           $scope.breadcrumb.items.push({name:'All Categories'});
         }
-        else if(page==='Brand'){
-          $scope.breadcrumb.items.push({name:'All Brands'});
+        else if(page==='FoodType'){
+          $scope.breadcrumb.items.push({name:'All FoodTypes'});
         }
       });
     };
 
   })
 
-  .controller('MainCtrl', function ($scope, $state, $stateParams, $location, Product, Brand, Category, Feature, socket, $rootScope, $injector, $loading) {
+  .controller('MainCtrl', function ($scope, $state, $stateParams, $location, Food, FoodType, Category, Feature, socket, $rootScope, $injector, $loading) {
 
-    if ($stateParams.productSku) { // != null
-        $scope.product = $scope.store.getProduct($stateParams.productSku);
+    if ($stateParams.foodSku) { // != null
+        $scope.food = $scope.store.getFood($stateParams.foodSku);
     }
 
 
@@ -65,10 +65,10 @@ angular.module('shopnxApp')
       return  '$ ' + value.toString();
     };
 
-    $scope.removeBrand = function(brand){
-      var index = $scope.fl.brands.indexOf(brand);
+    $scope.removeFoodType = function(foodType){
+      var index = $scope.fl.foodTypes.indexOf(foodType);
       if (index > -1) {
-          $scope.fl.brands.splice(index, 1);
+          $scope.fl.foodTypes.splice(index, 1);
           $scope.filter();
       }
     }
@@ -87,15 +87,15 @@ angular.module('shopnxApp')
       $scope.filter();
     }
 
-    $scope.products = {};
+    $scope.foods = {};
     $scope.filtered = {};
-    $scope.products.busy = false;
-    $scope.products.end = false;
-    $scope.products.after = 0;
-    $scope.products.items = [];
-    // $scope.products.sort = sortOptions[0].val;
+    $scope.foods.busy = false;
+    $scope.foods.end = false;
+    $scope.foods.after = 0;
+    $scope.foods.items = [];
+    // $scope.foods.sort = sortOptions[0].val;
     $scope.fl = {};
-    $scope.fl.brands = [];
+    $scope.fl.foodTypes = [];
     $scope.fl.categories = [];
     $scope.priceSlider = {};
     $scope.features = Feature.group.query();
@@ -119,26 +119,26 @@ angular.module('shopnxApp')
       api.get({id:id}).$promise.then(function(child){
         $scope.breadcrumb.items.push(child);
         // var p = child.parent;
-        // if(p != null){findBrandPath(1);}
+        // if(p != null){findFoodTypePath(1);}
         if(page==='Category'){
           $scope.breadcrumb.items.push({name:'All Categories'});
-        }else if(page==='Brand'){
-          $scope.breadcrumb.items.push({name:'All Brands'});
+        }else if(page==='FoodType'){
+          $scope.breadcrumb.items.push({name:'All FoodTypes'});
         }
       });
     };
 
 
-    var sort = $scope.products.sort = $stateParams.sort;
+    var sort = $scope.foods.sort = $stateParams.sort;
     var q = {where:{active:true},limit:10};
 
 
-    // displayProducts(q);
+    // displayFoods(q);
     var a = {};
     $scope.filter = function(){
       var f = [];
-      if ($scope.products.busy){ return; }
-      $scope.products.busy = true;
+      if ($scope.foods.busy){ return; }
+      $scope.foods.busy = true;
       if($scope.fl.features){
         angular.forEach($scope.fl.features,function(val, key){
           if(val.length>0){
@@ -146,13 +146,13 @@ angular.module('shopnxApp')
           }
         });
       }
-      if($scope.fl.brands){
-        if($scope.fl.brands.length>0){
-          var brandIds = [];
-          angular.forEach($scope.fl.brands,function(brand){
-            brandIds.push(brand._id);
+      if($scope.fl.foodTypes){
+        if($scope.fl.foodTypes.length>0){
+          var foodTypeIds = [];
+          angular.forEach($scope.fl.foodTypes,function(foodType){
+            foodTypeIds.push(foodType._id);
           });
-          f.push({'brand._id' : { $in: brandIds } });
+          f.push({'foodType._id' : { $in: foodTypeIds } });
         }
       }
       if($scope.fl.categories){
@@ -174,12 +174,12 @@ angular.module('shopnxApp')
       }
       // console.log(f,q);
 
-      displayProducts(q,true);
+      displayFoods(q,true);
     };
 
     // $scope.filterFeatures = function() {
-    //   if ($scope.products.busy){ return; }
-    //   $scope.products.busy = true;
+    //   if ($scope.foods.busy){ return; }
+    //   $scope.foods.busy = true;
     //   a.fl = [];
     //   if($scope.fl.features){
     //       angular.forEach($scope.fl.features,function(val, key){
@@ -197,25 +197,25 @@ angular.module('shopnxApp')
     //       }else{
     //         q.where = {};
     //       }
-    //       displayProducts(q,true);
+    //       displayFoods(q,true);
     //   }
     // };
     //
-    // $scope.filterBrands = function() {
+    // $scope.filterFoodTypes = function() {
     //   // This function required to query from database in place of filtering items from angular $scope,
-    //   // In some cases we load only 20 products for pagination in that case we won't be able to filter properly
-    //   if ($scope.products.busy){ return; }
-    //   $scope.products.busy = true;
+    //   // In some cases we load only 20 foods for pagination in that case we won't be able to filter properly
+    //   if ($scope.foods.busy){ return; }
+    //   $scope.foods.busy = true;
     //   a.br = [];
     //   console.log($scope.priceSlider);
-    //   if($scope.fl.brands){
-    //     if($scope.fl.brands.length>0){
-    //       var brandIds = [];
-    //       angular.forEach($scope.fl.brands,function(brand){
-    //         brandIds.push(brand._id);
+    //   if($scope.fl.foodTypes){
+    //     if($scope.fl.foodTypes.length>0){
+    //       var foodTypeIds = [];
+    //       angular.forEach($scope.fl.foodTypes,function(foodType){
+    //         foodTypeIds.push(foodType._id);
     //       });
     //       a.price = {'variants.price' : { $gt: $scope.priceSlider.min, $lt:$scope.priceSlider.max } };
-    //         a.br = {'brand._id' : { $in: brandIds } };
+    //         a.br = {'foodType._id' : { $in: foodTypeIds } };
     //         q.where = { $and : [a.price, a.br, {$and : a.fl}]};
     //     }else if(a.fl){
     //       q.where = { $and : [a.price, a.fl] };
@@ -223,22 +223,22 @@ angular.module('shopnxApp')
     //       q.where = { $and : [a.price] };
     //     }
     //   }else {
-    //     q.where.brand = undefined;
-    //     q.where['brand._id'] = undefined;
+    //     q.where.foodType = undefined;
+    //     q.where['foodType._id'] = undefined;
     //   }
-    //   displayProducts(q,true);
+    //   displayFoods(q,true);
     // };
     //
     // $scope.filterPrice = function(price) {
     //   // This function required to query from database in place of filtering items from angular $scope,
-    //   // In some cases we load only 20 products for pagination in that case we won't be able to filter properly
-    //   $scope.products.busy = false;
-    //   $scope.products.end = false;
-    //   $scope.products.after = 0;
-    //   $scope.products.items = [];
+    //   // In some cases we load only 20 foods for pagination in that case we won't be able to filter properly
+    //   $scope.foods.busy = false;
+    //   $scope.foods.end = false;
+    //   $scope.foods.after = 0;
+    //   $scope.foods.items = [];
     //
-    //   if ($scope.products.busy){ return;}
-    //   $scope.products.busy = true;
+    //   if ($scope.foods.busy){ return;}
+    //   $scope.foods.busy = true;
     //     console.log('price');
     //   if(price){
     //     a.price = {'variants.price' : { $gt: price.min, $lt:price.max } };
@@ -247,35 +247,35 @@ angular.module('shopnxApp')
     //     q.where = { $and : [a.br, {$and : a.fl}]};
     //   }
     //   // q.where['variants.price'] = { $gt: price.min, $lt:price.max };
-    //   displayProducts(q,true);
+    //   displayFoods(q,true);
     // };
 
     $scope.sortNow = function(sort){
         q.sort = sort;
-        displayProducts(q,true);
+        displayFoods(q,true);
     };
 
-    var displayProducts = function(q,flush){
+    var displayFoods = function(q,flush){
       if(flush){
         q.skip = 0;
-        $scope.products.items = [];
-        $scope.products.end = false;
-        $scope.products.after = 0;
+        $scope.foods.items = [];
+        $scope.foods.end = false;
+        $scope.foods.after = 0;
       }
-      $loading.start('products');
-      $scope.products.busy = true;
-      Product.query(q, function(data){
+      $loading.start('foods');
+      $scope.foods.busy = true;
+      Food.query(q, function(data){
           for (var i = 0; i < data.length; i++) {
-              $scope.products.items.push(data[i]);
+              $scope.foods.items.push(data[i]);
           }
-          $scope.filtered.count = data.length + $scope.products.after;
-          if(data.length>=5) { $scope.products.after = $scope.products.after + data.length; } else { $scope.products.end = true;}
-          $scope.products.busy = false;
-          $loading.finish('products');
-      }, function(){ $scope.products.busy = false; $loading.finish('products');});
+          $scope.filtered.count = data.length + $scope.foods.after;
+          if(data.length>=5) { $scope.foods.after = $scope.foods.after + data.length; } else { $scope.foods.end = true;}
+          $scope.foods.busy = false;
+          $loading.finish('foods');
+      }, function(){ $scope.foods.busy = false; $loading.finish('foods');});
 
-      Product.count.query(q, function(res){
-        $scope.products.count = res[0].count;
+      Food.count.query(q, function(res){
+        $scope.foods.count = res[0].count;
       });
     };
 
@@ -292,17 +292,17 @@ angular.module('shopnxApp')
     if('page' in $stateParams){
       var categoryId;
       if($stateParams.page && $stateParams._id){
-        $scope.products.brand = {_id : $stateParams._id};
+        $scope.foods.foodType = {_id : $stateParams._id};
         $scope.breadcrumb = {type: $stateParams.page};
         generateBreadCrumb($stateParams.page,$stateParams._id);
         if($stateParams.page==='Category'){
           // categoryId = $stateParams._id;
           $scope.fl.categories.push({_id:$stateParams._id,name:$stateParams.slug});
-        }else if($stateParams.page==='Brand'){
-          $scope.fl.brands.push({_id:$stateParams._id,name:$stateParams.slug});
+        }else if($stateParams.page==='FoodType'){
+          $scope.fl.foodTypes.push({_id:$stateParams._id,name:$stateParams.slug});
         }
         $scope.resetPriceRange();
-        // q.where['brand._id'] = brandId;
+        // q.where['foodType._id'] = foodTypeId;
         // q.where['category._id'] = categoryId;
       }else{
         q = {sort:sort,limit:10};
@@ -314,10 +314,10 @@ angular.module('shopnxApp')
     }
 
     $scope.scroll = function() {
-        if ($scope.products.busy || $scope.products.end){ return;}
-        $scope.products.busy = false;
-        q.skip = $scope.products.after;
-        displayProducts(q);
+        if ($scope.foods.busy || $scope.foods.end){ return;}
+        $scope.foods.busy = false;
+        q.skip = $scope.foods.after;
+        displayFoods(q);
     };
 
 

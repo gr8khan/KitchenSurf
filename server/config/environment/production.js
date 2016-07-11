@@ -1,6 +1,6 @@
 'use strict';
 
-// Production specific configuration
+// Foodion specific configuration
 // =================================
 module.exports = {
   // Server IP

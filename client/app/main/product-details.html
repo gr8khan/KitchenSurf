@@ -47,10 +47,10 @@ _________________________________________________________ -->
       </div>
 
       <div class="col-md-9">
-          <div class="row" id="productMain">
+          <div class="row" id="foodMain">
               <div class="col-sm-6">
                   <div id="mainImage">
-                      <img src="/assets/clothing/{{product.variants[0].image}}" err-src="/assets/images/photo.png" alt="{{product.name}}" class="img-responsive">
+                      <img src="/assets/clothing/{{food.variants[0].image}}" err-src="/assets/images/photo.png" alt="{{food.name}}" class="img-responsive">
                   </div>
 
                   <div class="ribbon sale">
@@ -68,30 +68,30 @@ _________________________________________________________ -->
               </div>
               <div class="col-sm-6">
                   <div class="box">
-                      <h1 class="text-center">{{product.name}} (Size: {{product.variants[i].size}})</h1>
-                      <p class="goToDescription"><a href="#details" class="scroll-to">Scroll to product details, material & care and sizing</a>
+                      <h1 class="text-center">{{food.name}} (Size: {{food.variants[i].size}})</h1>
+                      <p class="goToDescription"><a href="#details" class="scroll-to">Scroll to food details, material & care and sizing</a>
                       </p>
-                      <p class="price"><del class="text-muted" ng-if="product.variants[0].price!=product.variants[0].mrp" >${{product.variants[i].mrp}}</del>&nbsp;${{product.variants[i].price}}</p>
+                      <p class="price"><del class="text-muted" ng-if="food.variants[0].price!=food.variants[0].mrp" >${{food.variants[i].mrp}}</del>&nbsp;${{food.variants[i].price}}</p>
 
                       <div class="text-center buttons">
                         <div class="btn-group">
-                        <a ui-sref="productDetail({id:product._id, slug:product.slug})" class="btn btn-default">View detail</a>
-                        <a ng-click="cart.addItem({sku:product._id, name:product.name, slug:product.slug, mrp:product.variants[0].mrp, price:product.variants[0].price, weight:product.variants[0].weight}, -1)" ng-hide="checkCart(product._id)" class="btn btn-info">-</a>
+                        <a ui-sref="foodDetail({id:food._id, slug:food.slug})" class="btn btn-default">View detail</a>
+                        <a ng-click="cart.addItem({sku:food._id, name:food.name, slug:food.slug, mrp:food.variants[0].mrp, price:food.variants[0].price, weight:food.variants[0].weight}, -1)" ng-hide="checkCart(food._id)" class="btn btn-info">-</a>
 
-                        <a ng-hide="checkCart(product._id)" class="btn btn-info">{{getQuantity(product._id);}}</a>
+                        <a ng-hide="checkCart(food._id)" class="btn btn-info">{{getQuantity(food._id);}}</a>
 
-                        <a ng-click="cart.addItem({sku:product._id, name:product.name, slug:product.slug, mrp:product.variants[0].mrp, price:product.variants[0].price, weight:product.variants[0].weight}, +1)" ng-hide="checkCart(product._id)" class="btn btn-info">+</a>
+                        <a ng-click="cart.addItem({sku:food._id, name:food.name, slug:food.slug, mrp:food.variants[0].mrp, price:food.variants[0].price, weight:food.variants[0].weight}, +1)" ng-hide="checkCart(food._id)" class="btn btn-info">+</a>
                         </div>
-                        <a ng-click="cart.addItem({sku:product._id, name:product.name, slug:product.slug, mrp:product.variants[0].mrp, price:product.variants[0].price, quantity:1, image:product.variants[0].image,category:product.category, size:product.variants[0].size, weight:product.variants[0].weight} ,true);" ng-show="checkCart(product._id)" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        <a ng-click="cart.addItem({sku:food._id, name:food.name, slug:food.slug, mrp:food.variants[0].mrp, price:food.variants[0].price, quantity:1, image:food.variants[0].image,category:food.category, size:food.variants[0].size, weight:food.variants[0].weight} ,true);" ng-show="checkCart(food._id)" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                       </div>
 
                   </div>
 
                   <div class="row" id="thumbs">
-                      <div class="col-xs-4" ng-repeat="v in product.variants" ng-click="changeIndex($index);" ng-if="v.size!=product.variants[i].size">
+                      <div class="col-xs-4" ng-repeat="v in food.variants" ng-click="changeIndex($index);" ng-if="v.size!=food.variants[i].size">
                           <a href="" class="thumb">
-                              <img src="/assets/clothing/{{v.image}}" err-src="/assets/images/photo.png" alt="{{product.name}}" class="img-responsive">
-                              {{product.name}} (Size: {{v.size}})
+                              <img src="/assets/clothing/{{v.image}}" err-src="/assets/images/photo.png" alt="{{food.name}}" class="img-responsive">
+                              {{food.name}} (Size: {{v.size}})
                               <p class="price"><del class="text-muted" ng-if="v.price!=v.mrp" >${{v.mrp}}</del>&nbsp;${{v.price}}</p>
                           </a>
                       </div>
@@ -104,40 +104,40 @@ _________________________________________________________ -->
 
           <div class="box" id="details">
               <p>
-                  <div ng-if="product.info">
-                    <h4>Product details</h4>
-                    <p>{{product.info}}</p>
+                  <div ng-if="food.info">
+                    <h4>Food details</h4>
+                    <p>{{food.info}}</p>
                   </div>
 
-                  <div ng-if="product.brand">
-                  <h4>Brand</h4>
+                  <div ng-if="food.foodType">
+                  <h4>FoodType</h4>
                   <ul>
-                      <li><a href="/Brand/{{product.brand.name}}/{{product.brand._id}}">{{product.brand.name}}</a></li>
+                      <li><a href="/FoodType/{{food.foodType.name}}/{{food.foodType._id}}">{{food.foodType.name}}</a></li>
                   </ul>
                   </div>
-                  <div ng-if="product.category">
+                  <div ng-if="food.category">
                   <h4>Category</h4>
                   <ul>
-                      <li><a href="/Category/{{product.category.slug}}/{{product.category._id}}">{{product.category.name}}</a></li>
+                      <li><a href="/Category/{{food.category.slug}}/{{food.category._id}}">{{food.category.name}}</a></li>
                   </ul>
                   </div>
 
-                  <div ng-if="product.variants[i]">
+                  <div ng-if="food.variants[i]">
                   <h4>Weight</h4>
                   <ul>
-                      <li>{{product.variants[i].weight}}</a></li>
+                      <li>{{food.variants[i].weight}}</a></li>
                   </ul>
                   </div>
-                  <div ng-if="product.features.length>0">
+                  <div ng-if="food.features.length>0">
                   <h4>Features</h4>
                   <ul>
-                      <li ng-repeat="f in product.features">{{f.key}} : {{f.val}}</li>
+                      <li ng-repeat="f in food.features">{{f.key}} : {{f.val}}</li>
                   </ul>
                   </div>
-                  <div ng-if="product.keyFeatures.length>0">
+                  <div ng-if="food.keyFeatures.length>0">
                   <h4>Key Features</h4>
                   <ul>
-                      <li ng-repeat="f in product.keyFeatures">{{f}}</li>
+                      <li ng-repeat="f in food.keyFeatures">{{f}}</li>
                   </ul>
                   </div>
                   <blockquote>

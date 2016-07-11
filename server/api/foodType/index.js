@@ -1,7 +1,7 @@
 'use strict';
 
 var express = require('express');
-var controller = require('./brand.controller');
+var controller = require('./foodType.controller');
 var auth = require('../../auth/auth.service');
 
 var router = express.Router();

@@ -10,10 +10,10 @@ angular.module('shopnxApp')
       }
     };
   }])
-  .factory('Product', ['$resource', function($resource) {
+  .factory('Food', ['$resource', function($resource) {
     var obj = {};
-    obj = $resource('/api/products/:id', null, {'update': { method:'PUT' } });
-    obj.count = $resource('/api/products/count', null, {'update': { method:'PUT' }});
+    obj = $resource('/api/foods/:id', null, {'update': { method:'PUT' } });
+    obj.count = $resource('/api/foods/count', null, {'update': { method:'PUT' }});
     return obj;
   }])
 
@@ -54,8 +54,8 @@ angular.module('shopnxApp')
     obj.active = $resource('/api/countries/active', null, {'update': { method:'PUT' }});
     return obj;
   }])
-  .factory('Brand', ['$resource', function($resource) {
-    return $resource('/api/brands/:id', null, {'update': { method:'PUT' } });
+  .factory('FoodType', ['$resource', function($resource) {
+    return $resource('/api/foodTypes/:id', null, {'update': { method:'PUT' } });
   }])
   .factory('Coupon', ['$resource', function($resource) {
     return $resource('/api/coupons/:id', null, {'update': { method:'PUT' } });

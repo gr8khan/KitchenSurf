@@ -1,7 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
-var Product = require('./product.model');
+var Food = require('./food.model');
 
 function isJson(str) {
   try {
@@ -16,14 +16,14 @@ function isJson(str) {
 exports.count = function(req, res) {
   if(req.query){
     var q = isJson(req.query.where);
-    Product.find(q).count().exec(function (err, count) {
+    Food.find(q).count().exec(function (err, count) {
       if(err) { return handleError(res, err); }
       return res.status(200).json([{count:count}]);
     });
   }
 };
 
-// Get list of products
+// Get list of foods
 exports.index = function(req, res) {
   if(req.query){
     // console.log(req.query,req.query.skip,req.query.limit,req.query.sort);
@@ -32,29 +32,29 @@ exports.index = function(req, res) {
     var sort = isJson(req.query.sort);
     var select = isJson(req.query.select);
     // setTimeout(function(){
-      Product.find(q).limit(req.query.limit).skip(req.query.skip).sort(sort).select(select).exec(function (err, products) {
+      Food.find(q).limit(req.query.limit).skip(req.query.skip).sort(sort).select(select).exec(function (err, foods) {
         if(err) { return handleError(res, err); }
-        return res.status(200).json(products);
+        return res.status(200).json(foods);
       });
     // },2000);
   }else{
-    Product.find(function (err, products) {
+    Food.find(function (err, foods) {
       if(err) { return handleError(res, err); }
-      return res.status(200).json(products);
+      return res.status(200).json(foods);
     });
   }
 };
 
-// Get a single product
+// Get a single food
 exports.show = function(req, res) {
-  Product.findById(req.params.id, function (err, product) {
+  Food.findById(req.params.id, function (err, food) {
     if(err) { return handleError(res, err); }
-    if(!product) { return res.status(404).send('Not Found'); }
-    return res.json(product);
+    if(!food) { return res.status(404).send('Not Found'); }
+    return res.json(food);
   });
 };
 
-// Creates a new product in the DB.
+// Creates a new food in the DB.
 exports.create = function(req, res) {
   req.body.uid = req.user.email; // id change on every login hence email is used
   req.body.updated = Date.now();
@@ -67,13 +67,13 @@ exports.create = function(req, res) {
                       .replace(/\-\-+/g, '-')      // Replace multiple - with single -
                       .replace(/^-+/, '')          // Trim - from start of text
                       .replace(/-+$/, '');
-  Product.create(req.body, function(err, product) {
+  Food.create(req.body, function(err, food) {
     if(err) { return handleError(res, err); }
-    return res.status(201).json(product);
+    return res.status(201).json(food);
   });
 };
 
-// Updates an existing product in the DB.
+// Updates an existing food in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
   req.body.uid = req.user.email; // id change on every login hence email is used
@@ -89,26 +89,26 @@ exports.update = function(req, res) {
                       .replace(/-+$/, '');
   // var obj = JSON.parse(req.body.variants);
   // console.log('EDit', obj);
-  Product.findById(req.params.id, function (err, product) {
+  Food.findById(req.params.id, function (err, food) {
     if (err) { return handleError(res, err); }
-    if(!product) { return res.status(404).send('Not Found'); }
-    product.variants = req.body.variants;
-    product.features = req.body.features;
-    product.keyFeatures = req.body.keyFeatures;
-    var updated = _.merge(product, req.body);
+    if(!food) { return res.status(404).send('Not Found'); }
+    food.variants = req.body.variants;
+    food.features = req.body.features;
+    food.keyFeatures = req.body.keyFeatures;
+    var updated = _.merge(food, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      return res.status(200).json(product);
+      return res.status(200).json(food);
     });
   });
 };
 
-// Deletes a product from the DB.
+// Deletes a food from the DB.
 exports.destroy = function(req, res) {
-  Product.findById(req.params.id, function (err, product) {
+  Food.findById(req.params.id, function (err, food) {
     if(err) { return handleError(res, err); }
-    if(!product) { return res.status(404).send('Not Found'); }
-    product.remove(function(err) {
+    if(!food) { return res.status(404).send('Not Found'); }
+    food.remove(function(err) {
       if(err) { return handleError(res, err); }
       return res.status(204).send('No Content');
     });

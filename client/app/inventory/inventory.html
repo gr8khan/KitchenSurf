@@ -15,24 +15,24 @@
           </a>
         </li>
       </ul>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="product in products">
+      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="food in foods">
         <li>
-          <a href="#" tooltip="{{product.info}}" ng-click="editProduct(product)">{{product.name}}
-            <button type="button" class="close" ng-click="deleteProduct(product.name,product)">&times;</button>
+          <a href="#" tooltip="{{food.info}}" ng-click="editFood(food)">{{food.name}}
+            <button type="button" class="close" ng-click="deleteFood(food.name,food)">&times;</button>
           </a>
         </li>
       </ul>
     </div>
   </div>
 
-  <form class="product-form">
+  <form class="food-form">
     <label>Syncs in realtime across clients</label>
     <p class="input-group">
-      <input type="text" class="form-control" placeholder="Name" ng-model="product.name">
-      <input type="text" class="form-control" placeholder="SKU" ng-model="product.sku">
-      <input type="text" class="form-control" placeholder="SKU" ng-model="product.category">
+      <input type="text" class="form-control" placeholder="Name" ng-model="food.name">
+      <input type="text" class="form-control" placeholder="SKU" ng-model="food.sku">
+      <input type="text" class="form-control" placeholder="SKU" ng-model="food.category">
       <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary" ng-click="addProduct()">Add New</button>
+        <button type="submit" class="btn btn-primary" ng-click="addFood()">Add New</button>
       </span>
     </p>
   </form>

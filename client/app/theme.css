@@ -152,30 +152,30 @@ h1 {
   font-weight: 100;
   text-align: center;
 }
-#hot .product-slider {
+#hot .food-slider {
   margin-bottom: 20px;
 }
-#hot .product-slider:before,
-#hot .product-slider:after {
+#hot .food-slider:before,
+#hot .food-slider:after {
   content: " ";
   display: table;
 }
-#hot .product-slider:after {
+#hot .food-slider:after {
   clear: both;
 }
-#hot .product-slider .item {
+#hot .food-slider .item {
   margin: 0 25px;
   visibility: hidden;
 }
-#hot .product-slider .owl-controls {
+#hot .food-slider .owl-controls {
   position: relative;
   top: -30px;
 }
-#hot .product-slider .owl-controls .owl-buttons {
+#hot .food-slider .owl-controls .owl-buttons {
   display: none;
 }
-#hot .product-slider .owl-controls .owl-page.active span,
-#hot .product-slider .owl-controls.clickable .owl-page:hover span {
+#hot .food-slider .owl-controls .owl-page.active span,
+#hot .food-slider .owl-controls.clickable .owl-page:hover span {
   background: #4fbfa8;
 }
 #advantages {
@@ -434,31 +434,31 @@ h1 {
   vertical-align: middle;
 }
 @media (max-width: 991px) {
-  #content .info-bar .products-showing {
+  #content .info-bar .foods-showing {
     text-align: center;
   }
 }
 @media (max-width: 991px) {
-  #content .info-bar .products-number-sort {
+  #content .info-bar .foods-number-sort {
     text-align: center;
     margin-top: 10px;
   }
 }
-#content .info-bar .products-number strong {
+#content .info-bar .foods-number strong {
   margin-right: 10px;
 }
-#content .info-bar .products-sort-by select {
+#content .info-bar .foods-sort-by select {
   margin-left: 10px;
 }
 @media (max-width: 991px) {
-  #content .info-bar .products-sort-by {
+  #content .info-bar .foods-sort-by {
     margin: 10px 0 0;
   }
-  #content .info-bar .products-sort-by select {
+  #content .info-bar .foods-sort-by select {
     margin: 0;
   }
 }
-#content .product {
+#content .food {
   background: #fff;
   border: solid 1px #e6e6e6;
   -webkit-box-sizing: border-box;
@@ -471,7 +471,7 @@ h1 {
   /*  UPDATED! front pane, placed above back */
   /* back, initially hidden pane */
 }
-#content .product .flip-container {
+#content .food .flip-container {
   cursor: pointer;
   -webkit-perspective: 1000;
   -moz-perspective: 1000;
@@ -482,16 +482,16 @@ h1 {
   transform-style: preserve-3d;
 }
 @media (max-width: 767px) {
-  #content .product .flip-container img.img-responsive {
+  #content .food .flip-container img.img-responsive {
     min-width: 100%;
   }
 }
-#content .product .flip-container,
-#content .product .front,
-#content .product .back {
+#content .food .flip-container,
+#content .food .front,
+#content .food .back {
   width: 100%;
 }
-#content .product .flipper {
+#content .food .flipper {
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -503,8 +503,8 @@ h1 {
   transform-style: preserve-3d;
   position: relative;
 }
-#content .product .front,
-#content .product .back {
+#content .food .front,
+#content .food .back {
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -518,63 +518,63 @@ h1 {
   top: 0;
   left: 0;
 }
-#content .product .front {
+#content .food .front {
   z-index: 2;
   -webkit-transform: rotateY(0deg);
   -ms-transform: rotateY(0deg);
   transform: rotateY(0deg);
 }
-#content .product .back {
+#content .food .back {
   -webkit-transform: rotateY(-180deg);
   -ms-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
 }
-#content .product:hover .back {
+#content .food:hover .back {
   -webkit-transform: rotateY(0deg);
   -ms-transform: rotateY(0deg);
   transform: rotateY(0deg);
   z-index: 2;
 }
-#content .product:hover .front {
+#content .food:hover .front {
   -webkit-transform: rotateY(180deg);
   -ms-transform: rotateY(180deg);
   transform: rotateY(180deg);
   z-index: 1;
 }
-#content .product .invisible {
+#content .food .invisible {
   visibility: hidden;
 }
 @media (max-width: 767px) {
-  #content .product .invisible img.img-responsive {
+  #content .food .invisible img.img-responsive {
     min-width: 100%;
   }
 }
-#content .product .text {
+#content .food .text {
   padding: 10px 10px 0;
 }
-#content .product .text h3 {
+#content .food .text h3 {
   font-size: 18px;
   font-weight: 700;
   height: 39.6px;
   text-align: center;
   overflow: hidden;
 }
-#content .product .text h3 a {
+#content .food .text h3 a {
   color: #555555;
 }
-#content .product .text p.price {
+#content .food .text p.price {
   font-size: 18px;
   text-align: center;
   font-weight: 300;
 }
-#content .product .text p.price del {
+#content .food .text p.price del {
   color: #999999;
 }
-#content .product .text .buttons {
+#content .food .text .buttons {
   clear: both;
   text-align: center;
 }
-#content .product .text .buttons .btn {
+#content .food .text .buttons .btn {
   margin-bottom: 10px;
 }
 #content .banner {
@@ -593,29 +593,29 @@ h1 {
   -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 }
-#content #productMain {
+#content #foodMain {
   margin-bottom: 30px;
 }
-#content #productMain .goToDescription {
+#content #foodMain .goToDescription {
   margin-top: 20px;
   font-size: 12px;
   text-align: center;
 }
-#content #productMain .goToDescription a {
+#content #foodMain .goToDescription a {
   color: #999999;
   text-decoration: underline;
 }
-#content #productMain .price {
+#content #foodMain .price {
   font-size: 30px;
   font-weight: 300;
   text-align: center;
   margin-top: 40px;
 }
-#content #productMain .buttons {
+#content #foodMain .buttons {
   margin-bottom: 0;
   text-align: center;
 }
-#content #productMain .buttons .btn {
+#content #foodMain .buttons .btn {
   margin-bottom: 10px;
 }
 #content #details .social {
@@ -1135,20 +1135,20 @@ h1 {
     margin-left: 0;
   }
 }
-.navbar-brand {
+.navbar-foodType {
   float: left;
   padding: 10px 15px;
   font-size: 18px;
   line-height: 20px;
   height: 70px;
 }
-.navbar-brand:hover,
-.navbar-brand:focus {
+.navbar-foodType:hover,
+.navbar-foodType:focus {
   text-decoration: none;
 }
 @media (min-width: 768px) {
-  .navbar > .container .navbar-brand,
-  .navbar > .container-fluid .navbar-brand {
+  .navbar > .container .navbar-foodType,
+  .navbar > .container-fluid .navbar-foodType {
     margin-left: -15px;
   }
 }
@@ -1244,11 +1244,11 @@ h1 {
   background-color: #ffffff;
   border-bottom-color: #e6e6e6;
 }
-.navbar-default .navbar-brand {
+.navbar-default .navbar-foodType {
   color: #777777;
 }
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-brand:focus {
+.navbar-default .navbar-foodType:hover,
+.navbar-default .navbar-foodType:focus {
   color: #5e5e5e;
   background-color: transparent;
 }

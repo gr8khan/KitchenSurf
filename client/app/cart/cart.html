@@ -26,7 +26,7 @@
             <tr>
                 <th>#</th>
                 <th></th>
-                <th>Product</th>
+                <th>Food</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Total</th>
@@ -43,14 +43,14 @@
 
             <tr ng-repeat="item in cart.items | filter: filterCart">
                 <td>{{$index+1}}</td>
-                <td class="product-thumbnail">
+                <td class="food-thumbnail">
                     <a>
-                        <img ng-src="/assets/clothing/{{item.image}}" alt="{{item.name}}" data-err-src="images/product.jpg" width="54px"/>
+                        <img ng-src="/assets/clothing/{{item.image}}" alt="{{item.name}}" data-err-src="images/food.jpg" width="54px"/>
                     </a>
                 </td>
 
-                <td class="product-name">
-                    <a ui-sref="productDetail({id:item.sku, slug:item.slug})" ng-click="cancel();">{{item.name}}</a>
+                <td class="food-name">
+                    <a ui-sref="foodDetail({id:item.sku, slug:item.slug})" ng-click="cancel();">{{item.name}}</a>
                 </td>
 
                 <td>{{item.price | currency}}</td>
@@ -65,7 +65,7 @@
 
                 <td><span><strong>{{item.price * item.quantity | currency}}</strong></span></td>
 
-                <td class="product-actions">
+                <td class="food-actions">
                     <a title="Remove this item" class="remove" href="" ng-click="cart.addItem({sku:item.sku}, -10000000)">
                         <i class="fa fa-times"></i>
                     </a>

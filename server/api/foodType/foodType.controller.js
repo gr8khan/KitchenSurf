@@ -1,29 +1,29 @@
 'use strict';
 
 var _ = require('lodash');
-var Brand = require('./brand.model');
+var FoodType = require('./foodType.model.js');
 
-// Get list of brands
+// Get list of foodTypes
 exports.index = function(req, res) {
   var q = req.query;
   // setTimeout(function(){
-    Brand.find(q, function (err, brands) {
+    FoodType.find(q, function (err, foodTypes) {
       if(err) { return handleError(res, err); }
-      return res.status(200).json(brands);
+      return res.status(200).json(foodTypes);
     });
   // },1000);
 };
 
-// Get a single brand
+// Get a single foodType
 exports.show = function(req, res) {
-  Brand.findById(req.params.id, function (err, brand) {
+  FoodType.findById(req.params.id, function (err, foodType) {
     if(err) { return handleError(res, err); }
-    if(!brand) { return res.status(404).send('Not Found'); }
-    return res.json(brand);
+    if(!foodType) { return res.status(404).send('Not Found'); }
+    return res.json(foodType);
   });
 };
 
-// Creates a new brand in the DB.
+// Creates a new foodType in the DB.
 exports.create = function(req, res) {
   req.body.uid = req.user.email; // id change on every login hence email is used
   req.body.updated = Date.now();
@@ -35,13 +35,13 @@ exports.create = function(req, res) {
                       .replace(/^-+/, '')          // Trim - from start of text
                       .replace(/-+$/, '');
 
-  Brand.create(req.body, function(err, brand) {
+  FoodType.create(req.body, function(err, foodType) {
     if(err) { return handleError(res, err); }
-    return res.status(201).json(brand);
+    return res.status(201).json(foodType);
   });
 };
 
-// Updates an existing brand in the DB.
+// Updates an existing foodType in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
   req.body.uid = req.user.email; // id change on every login hence email is used
@@ -54,23 +54,23 @@ exports.update = function(req, res) {
                       .replace(/^-+/, '')          // Trim - from start of text
                       .replace(/-+$/, '');
 
-  Brand.findById(req.params.id, function (err, brand) {
+  FoodType.findById(req.params.id, function (err, foodType) {
     if (err) { return handleError(res, err); }
-    if(!brand) { return res.status(404).send('Not Found'); }
-    var updated = _.merge(brand, req.body);
+    if(!foodType) { return res.status(404).send('Not Found'); }
+    var updated = _.merge(foodType, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      return res.status(200).json(brand);
+      return res.status(200).json(foodType);
     });
   });
 };
 
-// Deletes a brand from the DB.
+// Deletes a foodType from the DB.
 exports.destroy = function(req, res) {
-  Brand.findById(req.params.id, function (err, brand) {
+  FoodType.findById(req.params.id, function (err, foodType) {
     if(err) { return handleError(res, err); }
-    if(!brand) { return res.status(404).send('Not Found'); }
-    brand.remove(function(err) {
+    if(!foodType) { return res.status(404).send('Not Found'); }
+    foodType.remove(function(err) {
       if(err) { return handleError(res, err); }
       return res.status(204).send('No Content');
     });

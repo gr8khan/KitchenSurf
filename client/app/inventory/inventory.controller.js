@@ -1,40 +1,40 @@
 'use strict';
 
 angular.module('shopnxApp')
-  .controller('InventoryCtrl', function ($scope, socket, Product, Modal, Settings) {
-    $scope.products = [];
+  .controller('InventoryCtrl', function ($scope, socket, Food, Modal, Settings) {
+    $scope.foods = [];
 
-    $scope.products =
-    Product.query(function() {
-      socket.syncUpdates('product', $scope.products);
+    $scope.foods =
+    Food.query(function() {
+      socket.syncUpdates('food', $scope.foods);
     });
 
-    $scope.addProduct = function() {
+    $scope.addFood = function() {
       if(Settings.demo){
-        toastr.error('Adding product won\'t happen in demo mode');
+        toastr.error('Adding food won\'t happen in demo mode');
         return;
       }
-      if($scope.product === ''){
+      if($scope.food === ''){
         return;
       }
-      Product.save($scope.product);
-      $scope.product = {};
+      Food.save($scope.food);
+      $scope.food = {};
     };
 
-    $scope.editProduct = function(product) {
-      Modal.show(product,{title:product.name});
+    $scope.editFood = function(food) {
+      Modal.show(food,{title:food.name});
     };
 
-    $scope.deleteProduct = Modal.delete(function(product) {
+    $scope.deleteFood = Modal.delete(function(food) {
       if(Settings.demo){
-        toastr.error('Delete product will not work in demo mode');
+        toastr.error('Delete food will not work in demo mode');
         return;
       }
-      Product.delete({id:product._id});
+      Food.delete({id:food._id});
     });
 
     $scope.$on('$destroy', function () {
-      socket.unsyncUpdates('product');
+      socket.unsyncUpdates('food');
     });
 
   });

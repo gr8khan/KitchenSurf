@@ -70,7 +70,7 @@
   };
 
   // adds an item to the cart
-  ShoppingCart.prototype.addItem = function (product,quantity) {
+  ShoppingCart.prototype.addItem = function (food,quantity) {
     // sku, name, slug, mrp, price, quantity, image, category, size, weight
       quantity = this.toNumber(quantity);
       if (quantity !== 0) {
@@ -78,7 +78,7 @@
           var found = false;
           for (var i = 0; i < this.items.length && !found; i++) {
               var item = this.items[i];
-              if (item.sku === product.sku) {
+              if (item.sku === food.sku) {
                   found = true;
                   item.quantity = this.toNumber(this.toNumber(item.quantity) + quantity);
                   if(item.weight==null){item.weight = 0;}
@@ -93,7 +93,7 @@
 
           // new item, add now
           if (!found) {
-              var itm = new CartItem(product.sku, product.name, product.slug, product.mrp, product.price, product.quantity, product.image, product.category, product.size, product.weight, 0);
+              var itm = new CartItem(food.sku, food.name, food.slug, food.mrp, food.price, food.quantity, food.image, food.category, food.size, food.weight, 0);
               this.items.push(itm);
               this.skuArray.push(itm.sku);
           }
@@ -367,7 +367,7 @@ ShoppingCart.prototype.checkoutGoogle = function (parms, clearCart) {
 
     // build form
     var form = $('<form/></form>');
-    // NOTE: in production projects, use the checkout.google url below;
+    // NOTE: in foodion projects, use the checkout.google url below;
     // for debugging/testing, use the sandbox.google url instead.
     //form.attr("action", "https://checkout.google.com/api/checkout/v2/merchantCheckoutForm/Merchant/" + parms.merchantID);
     form.attr("action", "https://sandbox.google.com/checkout/api/checkout/v2/checkoutForm/Merchant/" + parms.merchantID);
@@ -403,7 +403,7 @@ ShoppingCart.prototype.checkoutCOD = function (parms, clearCart) {
 
       // build form
       var form = $('<form/></form>');
-      // NOTE: in production projects, use the checkout.google url below;
+      // NOTE: in foodion projects, use the checkout.google url below;
       // for debugging/testing, use the sandbox.google url instead.
       //form.attr("action", "https://checkout.google.com/api/checkout/v2/merchantCheckoutForm/Merchant/" + parms.merchantID);
       form.attr("action", "/order");
@@ -441,7 +441,7 @@ ShoppingCart.prototype.checkoutStripe = function (parms, clearCart) {
     // build form
     var form = $('.form-stripe');
     form.empty();
-    // NOTE: in production projects, you have to handle the post with a few simple calls to the Stripe API.
+    // NOTE: in foodion projects, you have to handle the post with a few simple calls to the Stripe API.
     // See https://stripe.com/docs/checkout
     // You'll get a POST to the address below w/ a stripeToken.
     // First, you have to initialize the Stripe API w/ your public/private keys.

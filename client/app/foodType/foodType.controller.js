@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('shopnxApp')
-  .controller('BrandCtrl', function () {
+  .controller('FoodTypeCtrl', function () {
 
   });

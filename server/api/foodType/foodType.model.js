@@ -3,16 +3,16 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var BrandSchema = new Schema({
+var FoodTypeSchema = new Schema({
   name: String,
   slug: String,
   info: String,
   parent: String,
   image: String,
   uid: String,
-  brand: Number,
+  foodType: Number,
   active: { type: Boolean, default: true },
   updated: {type: Date, default: Date.now}
 });
 
-module.exports = mongoose.model('Brand', BrandSchema);
+module.exports = mongoose.model('FoodType', FoodTypeSchema);

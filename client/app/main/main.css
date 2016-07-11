@@ -8,21 +8,21 @@ font-weight: normal;
 p.price .text-muted{
   font-size: 20px;
 }
-.product .text{
+.food .text{
 	min-height: 170px;
 }
-.product a.invisible{
+.food a.invisible{
 	min-height: 300px;
 }
-.product .flip-container{
+.food .flip-container{
 	height:40px;
 }
-.product .flip-container img.img-responsive {
+.food .flip-container img.img-responsive {
 	min-height: 350px;
 	max-height: 350px;
 	width: auto;
 }
-.products .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+.foods .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
     height: 330px;
 }
 /*div.front {
@@ -38,6 +38,6 @@ em {
     border-radius: 3px;
     letter-spacing: 1.5px;
 }
-.brand-filter-panel{
+.foodType-filter-panel{
    height:200px;overflow:auto;
 }
