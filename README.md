@@ -66,3 +66,4 @@ The following are basic commands which will generate the required code for your 
 
 ### Future Plan
 * Plan to add OAUTH login with facebook, gmail, twitter
+* Add paypal payments
